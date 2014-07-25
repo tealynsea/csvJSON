@@ -16,12 +16,13 @@
 var fs = require('fs');
 //var input = require('input');
 
-var csv = fs.readFileSync('input.csv', 'utf-8', function (err, data){
+var csv = fs.readFile('input.csv', 'utf-8', function (err, data){
 
 	if (err) {
 		throw err;
-	}
-	console.log(data);
+	 }
+	 
+	console.log(csvJSON (data));
 });
 
 var Row = function(name, age, city) {
@@ -32,17 +33,17 @@ var Row = function(name, age, city) {
 } 
 
 function csvJSON(text) {
-
+	//This is the culmination of the for loop through the objects.
 	var csvJSON1 = [];
-
-	var lines = csv.split('\n');
-
+	//This variable split
+	var lines = text.split('\n');
+		//i=1 starts at 1 to skip headers
 	for (var i=1; i<lines.length; i++) {
 
 		var cell=lines[i].split(',');
 		//console.log(cell);
 
-		var viewJSON = new Row(cell [0], cell[1], cell[2]);
+		var viewJSON = new Row(cell[0], cell[1], cell[2]);
 
 		csvJSON1.push(viewJSON);
 		//return viewJSON;
@@ -53,7 +54,9 @@ function csvJSON(text) {
 
 }
 
-console.log(csvJSON(csv) );
+//console.log(csvJSON(csv) );
+
+//return JSON.stringify(csvJSON1);
 
 
 
